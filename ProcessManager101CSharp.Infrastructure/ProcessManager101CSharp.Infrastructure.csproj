@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.0.123" />
+        <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+        <PackageReference Include="FluentMigrator" Version="3.3.2" />
+        <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+        <PackageReference Include="Npgsql" Version="7.0.0" />
+        <PackageReference Include="ParcelVision.Utile.Configuration" Version="2.4.0" />
+        <PackageReference Include="ParcelVision.Utile.Messages" Version="2.3.0" />
+        <PackageReference Include="ParcelVision.Utile.EventStore.Domain" Version="8.3.1" />
+        <PackageReference Include="ParcelVision.Utile.EventStore.Repository" Version="8.3.1" />
+        <PackageReference Include="ParcelVision.Utile.EventStore.Projections" Version="8.3.1" />
+    </ItemGroup>
+</Project>

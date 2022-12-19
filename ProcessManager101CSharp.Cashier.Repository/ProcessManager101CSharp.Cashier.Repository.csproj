@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ProcessManager101CSharp.Cashier.Process\ProcessManager101CSharp.Cashier.Process.csproj" />
+        <ProjectReference Include="..\ProcessManager101CSharp.Infrastructure\ProcessManager101CSharp.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

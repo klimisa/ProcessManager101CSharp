@@ -1,0 +1,9 @@
+@startuml
+
+scale 350 width
+[*] --> PreparingDrink: New Order
+
+PreparingDrink -> WaitingForPayment: Drink Prepared
+WaitingForPayment --> [*]
+
+@enduml

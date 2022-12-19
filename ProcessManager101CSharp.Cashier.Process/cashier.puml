@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+[*] --> WaitingForPayment : New Order
+
+WaitingForPayment --> [*] : Payment Received
+
+@enduml
