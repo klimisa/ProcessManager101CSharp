@@ -18,7 +18,4 @@
         <ProjectReference Include="..\ProcessManager101CSharp.Messages\ProcessManager101CSharp.Messages.csproj" />
         <ProjectReference Include="..\ProcessManager101CSharp.Infrastructure\ProcessManager101CSharp.Infrastructure.csproj" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Repository" />
-    </ItemGroup>
 </Project>

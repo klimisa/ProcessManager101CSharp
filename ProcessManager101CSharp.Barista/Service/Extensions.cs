@@ -25,7 +25,7 @@ public static class Extensions
                 correlationId, causationId) { Message = m },
             Command.Publish<Output.DrinkReady>(Output.DrinkReady m) => new Published__DrinkReady(m.Drink, m.Name,
                 correlationId, causationId) { Message = m },
-            Command.Completed => new Completed(Guid.NewGuid(), Guid.NewGuid()),
+            Command.Complete => new Completed(Guid.NewGuid(), Guid.NewGuid()),
             _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
         };
 

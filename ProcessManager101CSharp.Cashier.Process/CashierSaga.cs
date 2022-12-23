@@ -32,8 +32,7 @@ public class CashierSaga
         (state, message) switch
         {
             (State.Initial, Event.Received<Input>(Input.NewOrder m)) =>
-                new State.WaitingForPayment(
-                ),
+                new State.WaitingForPayment(),
             (State.WaitingForPayment, Event.Received<Input>(Input.PaymentReceived m)) =>
                 new State.Completed(),
             _ => state
@@ -57,7 +56,7 @@ public class CashierSaga
                     m.CorrelationId,
                     m.PaymentType,
                     m.Amount).Publish();
-                yield return new Command.Completed();
+                yield return new Command.Complete();
                 break;
             default: throw new Exception($"%A{message} can not be handled by %A{state}");
         }

@@ -9,7 +9,7 @@ using Utile.EventStore.Projections;
 
 public class DrinkPreparationSagaProjection : IProjection
 {
-    //notes: Abstraction of "Published__" will publish to the bus 
+    //notes: Abstraction of "Published__" will publish to the bus
 
     private readonly IBus bus;
 
@@ -20,13 +20,14 @@ public class DrinkPreparationSagaProjection : IProjection
 
     public async Task Project(Envelope envelope)
     {
+        // Retry a few times
         try
         {
             switch (envelope.EventData)
             {
                 case Sent__PrepareDrink m:
                     Log.Information(nameof(Sent__PrepareDrink));
-                    await bus.Publish(new PrepareDrink
+                    await bus.Send(new PrepareDrink
                     {
                         Name = m.Name,
                         Drink = m.Drink,
@@ -44,7 +45,7 @@ public class DrinkPreparationSagaProjection : IProjection
                     break;
                 case Replied__PaymentDue m:
                     Log.Information(nameof(Replied__PaymentDue));
-                    await bus.Publish(new PaymentDue
+                    await bus.Send(new PaymentDue
                     {
                         Amount = m.Message.Amount,
                         CorrelationId = m.CorrelationId

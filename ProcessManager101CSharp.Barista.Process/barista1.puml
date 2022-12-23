@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> WaitForDrinkAndPayment: New Order
+
+WaitForDrinkAndPayment -->  WaitForDrinkAndPayment : Drink Ready
+WaitForDrinkAndPayment -->  WaitForDrinkAndPayment : Payment Received
+
+WaitForDrinkAndPayment --> [*]
+
+@enduml

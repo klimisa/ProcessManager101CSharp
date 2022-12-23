@@ -13,6 +13,8 @@ public class DrinkPreparationSaga
         public record WaitingForPayment : State;
 
         public record Completed : State;
+
+        public record WaitForDrinkAndPayment(bool DrinkReady, bool PaymentComplete);
     };
 
     public record Input
@@ -49,11 +51,11 @@ public class DrinkPreparationSaga
             case (State.Initial, Input.NewOrder m):
                 var drink = $"{m.Size} {m.Item}";
                 Console.WriteLine($"{drink} for {m.Name}, got it!");
-                yield return new Output.PrepareDrink(
-                    m.CorrelationId,
-                    drink,
-                    m.Name
-                ).Send();
+                    yield return new Output.PrepareDrink(
+                        m.CorrelationId,
+                        drink,
+                        m.Name
+                    ).Send();
                 break;
             case (State.PreparingDrink s, Input.PaymentComplete m):
                 Console.WriteLine($"Payment Complete for '{s.Name}' got it!");
@@ -62,7 +64,7 @@ public class DrinkPreparationSaga
                     s.Drink,
                     s.Name
                 ).Publish();
-                yield return new Command.Completed();
+                yield return new Command.Complete();
                 break;
             default: throw new Exception($"%A{message} can not be handled by %A{state}");
         }

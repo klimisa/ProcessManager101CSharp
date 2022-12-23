@@ -1,0 +1,19 @@
+@startuml
+
+@startuml
+[*] --> WaitForDrinkAndPayment
+
+state WaitForDrinkAndPayment {
+  [*] -> AwaitingForDrink
+  AwaitingForDrink --> DrinkReady : Drink Ready
+  ||
+  [*] -> AwaitForPayment
+  AwaitForPayment --> PaymentComplete : Payment Received
+}
+
+WaitForDrinkAndPayment --> [*]
+
+@enduml
+
+
+@enduml

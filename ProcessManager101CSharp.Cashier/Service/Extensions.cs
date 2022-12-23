@@ -21,11 +21,11 @@ public static class Extensions
     ) =>
         command switch
         {
-            Command.Reply<Output.PaymentDue>(Output.PaymentDue m) => 
+            Command.Reply<Output.PaymentDue>(Output.PaymentDue m) =>
                 new Replied__PaymentDue(correlationId, causationId) {Message = m},
-            Command.Publish<Output.PaymentComplete>(Output.PaymentComplete m) => 
+            Command.Publish<Output.PaymentComplete>(Output.PaymentComplete m) =>
                 new Published__PaymentComplete(correlationId, causationId) {Message = m},
-            Command.Completed => new Completed(Guid.NewGuid(), Guid.NewGuid()),
+            Command.Complete => new Completed(Guid.NewGuid(), Guid.NewGuid()),
         _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
         };
 

@@ -25,11 +25,14 @@ public class CashierConsumer :
         var message =
             new CashierSaga.Input.NewOrder(
                 context.Message.Id,
-                correlationId, 
+                correlationId,
                 context.Message.Name,
                 context.Message.Size,
                 context.Message.Item); // Added to metadata
-        
+
+       // What is my order? Go and pick your strategy?
+       // Execute strategy.
+       //
         // hide the details of create or update behind an append method
         await CommandHandler.Handle(sagaId, repository, sagaId, correlationId, correlationId, message);
     }
@@ -54,10 +57,10 @@ public class CashierConsumer :
         var message =
             new CashierSaga.Input.PaymentReceived(
                 context.Message.OrderId,
-                correlationId, 
+                correlationId,
                 paymentType,
                 context.Message.Amount);
-        
+
         // hide the details of create or update behind an append method
         await CommandHandler.Handle(sagaId, repository, sagaId, correlationId, correlationId, message);
     }

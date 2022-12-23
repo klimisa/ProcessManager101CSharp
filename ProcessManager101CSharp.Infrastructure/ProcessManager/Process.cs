@@ -31,7 +31,7 @@ public class Event
             @out = Out;
         }
     }
-    
+
     public class Replied<TOutput> : Event
     {
         public Replied(TOutput @out)
@@ -62,5 +62,5 @@ public record Command
 
     public record Publish<TOutput>(TOutput TOut) : Command;
 
-    public record Completed : Command;
+    public record Complete : Command;
 }
