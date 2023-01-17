@@ -11,8 +11,7 @@ public static class Extensions
         this IEnumerable<Command> commands,
         Guid correlationId,
         Guid causationId
-    ) =>
-        commands.Select(cmd => cmd.ToEvent(correlationId, causationId)).ToArray();
+    ) => commands.Select(cmd => cmd.ToEvent(correlationId, causationId)).ToArray();
 
     private static IEvent ToEvent(
         this Command command,
@@ -22,22 +21,21 @@ public static class Extensions
         command switch
         {
             Command.Reply<Output.PaymentDue>(Output.PaymentDue m) =>
-                new Replied__PaymentDue(correlationId, causationId) {Message = m},
+                new Replied__PaymentDue(correlationId, causationId) { Message = m },
             Command.Publish<Output.PaymentComplete>(Output.PaymentComplete m) =>
-                new Published__PaymentComplete(correlationId, causationId) {Message = m},
+                new Published__PaymentComplete(correlationId, causationId) { Message = m },
             Command.Complete => new Completed(Guid.NewGuid(), Guid.NewGuid()),
-        _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
         };
 
     public static IEvent ToEvent(
         this Input message,
         Guid correlationId,
         Guid causationId
-    ) =>
-        message switch
-        {
-            Input.NewOrder m => new Received__NewOrder(correlationId, causationId) { Message = m },
-            Input.PaymentReceived m => new Received__PaymentReceived(correlationId, causationId) { Message = m },
-            _ => throw new ArgumentOutOfRangeException(nameof(message), message, null)
-        };
+    ) => message switch
+    {
+        Input.NewOrder m => new Received__NewOrder(correlationId, causationId) { Message = m },
+        Input.PaymentReceived m => new Received__PaymentReceived(correlationId, causationId) { Message = m },
+        _ => throw new ArgumentOutOfRangeException(nameof(message), message, null)
+    };
 }

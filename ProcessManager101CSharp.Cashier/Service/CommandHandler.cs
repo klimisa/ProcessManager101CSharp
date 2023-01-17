@@ -33,10 +33,7 @@ public static class CommandHandler
     {
         var commands = CashierSaga.Handle(state, message);
         var commandsToStore = commands.ToEvents(correlationId, causationId);
-
-        var messageToStore =
-            message
-                .ToEvent(correlationId, causationId);
+        var messageToStore = message.ToEvent(correlationId, causationId);
 
         var events = new List<IEvent> { messageToStore };
 
